@@ -14,7 +14,7 @@ namespace kektura
         static List<int> emelkedes = new List<int>();
         static List<int> lejtes = new List<int>();
         static List<bool> pecsetelo = new List<bool>();
-
+        static int magassag;
         static void Beolvas()
         {
             FileStream file = new FileStream("kektura.csv", FileMode.Open);
@@ -22,10 +22,10 @@ namespace kektura
 
             string[] adatok = new string[6];
             string adat = "";
-            int magassag;
-
+            
             // magasság beolvasása és egésszé konvertálása
-            magassag = Convert.ToInt32(be.ReadLine());
+            adat = be.ReadLine();
+            magassag = Convert.ToInt32(adat);
             // Console.WriteLine("A magassag: {0}",magassag);
 
             // adatsorok beolvasása
@@ -105,6 +105,59 @@ namespace kektura
             Console.WriteLine("\tTavolsag: {0} km",hossz[hely]);
         }
 
+        static bool HianyosNev(int melyik) 
+        {
+            if (vegzo[melyik].Contains("pecsetelohely"))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        static void Hetedik()
+        {
+            Console.WriteLine("7. feladat: Hianyos allomasnevek:");
+            int db = 0;
+            for (int i = 0; i < vegzo.Count; i++)
+            {
+                if (pecsetelo[i])
+                {
+                    if (HianyosNev(i))
+                    {
+                        Console.WriteLine("\t{0}",vegzo[i]);
+                        db++;
+                    }
+                }
+            }
+            if (db == 0)
+            {
+                Console.WriteLine("Nincs hianyos allomasnev!");
+            }
+        }
+
+        static void Nyolcadik() 
+        {
+            List<int> magassagok = new List<int>();
+            magassagok.Add(magassag);
+            int max = magassagok[0];
+            int hely = 0; ;
+            for (int i = 1; i < lejtes.Count; i++)
+            {
+                magassagok.Add(magassagok[i - 1] + emelkedes[i - 1] - lejtes[i - 1]);
+                if (magassagok[i] > max)
+                {
+                    max = magassagok[i];
+                    hely = i;
+                }
+            }
+            Console.WriteLine("8. feladat: Legmagasabb vegpont:");
+            Console.WriteLine("\tA vegpont neve: {0}",indulo[hely]);
+            Console.WriteLine("\tA magassaga: {0} m",magassagok[hely]);
+        }
+
         static void Main()
         {
             Beolvas();
@@ -112,6 +165,8 @@ namespace kektura
             Harmadik();
             Negyedik();
             Otodik();
+            Hetedik();
+            Nyolcadik();
             Console.WriteLine("Tovabb barmilyen billentyure...");
             Console.ReadKey();
         }

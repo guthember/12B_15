@@ -2,3 +2,4 @@ C:\Users\guthe\documents\visual studio 2010\Projects\kektura\bin\Debug\kektura.e
 C:\Users\guthe\documents\visual studio 2010\Projects\kektura\bin\Debug\kektura.pdb
 C:\Users\guthe\documents\visual studio 2010\Projects\kektura\obj\x86\Debug\kektura.exe
 C:\Users\guthe\documents\visual studio 2010\Projects\kektura\obj\x86\Debug\kektura.pdb
+C:\Users\guthe\documents\visual studio 2010\Projects\kektura\obj\x86\Debug\kektura.csprojResolveAssemblyReference.cache
