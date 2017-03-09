@@ -158,6 +158,39 @@ namespace kektura
             Console.WriteLine("\tA magassaga: {0} m",magassagok[hely]);
         }
 
+        static void Kilences()
+        {
+            Console.WriteLine("9. feladat: Kiírás");
+            FileStream file = new FileStream("kektura2.csv", FileMode.Create);
+            StreamWriter ki = new StreamWriter(file);
+
+            ki.WriteLine(magassag.ToString());
+            string sor = "";
+            for (int i = 0; i < indulo.Count; i++)
+            {
+                sor = indulo[i] + ";" + vegzo[i];
+                if (pecsetelo[i] && HianyosNev(i))
+                {
+                    sor += " pecsetelohely";
+                }
+                sor += ";" + hossz[i].ToString() + ";" +
+                       emelkedes[i].ToString() + ";" +
+                       lejtes[i].ToString() + ";";
+                if (pecsetelo[i])
+                {
+                    sor += "i";
+                }
+                else
+                {
+                    sor += "n";
+                }
+                ki.WriteLine(sor);
+            }
+
+            ki.Close();
+            file.Close();
+        }
+
         static void Main()
         {
             Beolvas();
@@ -167,6 +200,7 @@ namespace kektura
             Otodik();
             Hetedik();
             Nyolcadik();
+            Kilences();
             Console.WriteLine("Tovabb barmilyen billentyure...");
             Console.ReadKey();
         }
